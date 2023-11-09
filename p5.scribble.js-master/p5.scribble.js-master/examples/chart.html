@@ -1,0 +1,65 @@
+<!doctype HTML>
+<html>
+  <head>
+    <title>Chart example of p5.scribble</title>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.min.js"></script>
+    <script language="javascript" type="text/javascript" src="https://cdn.rawgit.com/generative-light/p5.scribble.js/master/p5.scribble.js"></script>
+
+    <script>
+    /**
+      A short example to use p5.scribble to draw a bar graph.
+
+      We have an array filled with 12 values between -100 and 100.
+      Now every value is visualized as a filled rect while the height
+      is the value as a percent value multiplied by the half display height,
+      to show negative and positive values as well.
+
+      We use scribbleLine, scribbleRect and scribbleFilling and some parameters
+      of the scribble class to define bowing and roughness.
+
+      Play around with the bowing, the roughness, the strokeWeights and
+      the angle and gap of the fillig to see how these prameters change the output.
+    */
+
+      function setup() {
+        createCanvas( 1000, 1000 );
+        background( 1 );
+
+        noLoop();
+      }
+
+      function draw() {}
+
+      function drawFlowers() {
+        background( 1 );
+        strokeWeight(1);
+        stroke("grey");
+
+        var scribble = new Scribble();
+
+        for (var i=0; i<=100; i++){
+          let x=random(width);     
+          let y=random(height);
+
+          noFill();
+          scribble.scribbleCurve( x, y, x, height, x + random(-100, 100), y + (y / 3), x + random(-100, 100), y + (2 * (y / 3)) );
+
+
+          fill("black");
+          scribble.scribbleEllipse(x,y,20,20)
+          scribble.scribbleEllipse(x-15,y+5,20,20)
+          scribble.scribbleEllipse(x-25,y-5,20,20)
+          scribble.scribbleEllipse(x-17,y-20,20,20)
+          scribble.scribbleEllipse(x,y-15,20,20)
+
+          fill("black");
+          scribble.scribbleEllipse(x-12,y-7,22,22) 
+        }
+      }
+
+      function mouseClicked(){
+        drawFlowers();
+      }
+    </script>
+  </head>
+</html>
